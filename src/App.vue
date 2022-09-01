@@ -1,5 +1,6 @@
 <template>
   <h1>Todo application</h1>
+  <AddTodoForm @addTodo="addTodo" />
   <hr />
   <TodoList
     v-bind:todos="todos"
@@ -10,6 +11,7 @@
 
 <script>
 import TodoList from "@/components/TodoList.vue";
+import AddTodoForm from "./components/AddTodoForm.vue";
 
 export default {
   name: "App",
@@ -22,8 +24,13 @@ export default {
       ],
     };
   },
-  components: { TodoList },
+  components: { TodoList, AddTodoForm },
   methods: {
+    addTodo(title) {
+      const newTodo = { id: this.todos.length + 1, title, completed: false };
+
+      this.todos.push(newTodo);
+    },
     changeCompleted(id) {
       this.todos = this.todos.map((todo) => {
         if (todo.id === id) {
