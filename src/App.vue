@@ -17,14 +17,20 @@ export default {
   name: "App",
   data() {
     return {
-      todos: [
-        { id: 1, title: "First", completed: false },
-        { id: 2, title: "Second", completed: false },
-        { id: 3, title: "Third", completed: false },
-      ],
+      todos: [],
     };
   },
   components: { TodoList, AddTodoForm },
+  mounted() {
+    const getData = async () => {
+      const response = await fetch(
+        "https://jsonplaceholder.typicode.com/todos"
+      );
+      const result = await response.json();
+      this.todos = result;
+    };
+    getData();
+  },
   methods: {
     addTodo(title) {
       const newTodo = { id: this.todos.length + 1, title, completed: false };
