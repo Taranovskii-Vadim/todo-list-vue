@@ -1,11 +1,11 @@
 <template>
   <li>
     <div class="box">
-      <input type="checkbox" />
+      <input type="checkbox" @change="$emit('change', todo.id)" />
       <strong>{{ todo.id }}.</strong>
     </div>
-    <h4>{{ todo.title }}</h4>
-    <button>&times;</button>
+    <h4 v-bind:class="{ done: todo.completed }">{{ todo.title }}</h4>
+    <button @click="$emit('delete', todo.id)">&times;</button>
   </li>
 </template>
 
@@ -38,6 +38,10 @@ li {
   border: 1px solid gray;
   border-radius: 5px;
   padding: 6px 12px;
+}
+
+.done {
+  text-decoration: line-through;
 }
 
 button {

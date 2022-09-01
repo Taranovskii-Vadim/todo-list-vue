@@ -1,7 +1,11 @@
 <template>
   <h1>Todo application</h1>
   <hr />
-  <TodoList v-bind:todos="todos" />
+  <TodoList
+    v-bind:todos="todos"
+    @changeCompleted="changeCompleted"
+    @deleteTodo="deleteTodo"
+  />
 </template>
 
 <script>
@@ -19,6 +23,19 @@ export default {
     };
   },
   components: { TodoList },
+  methods: {
+    changeCompleted(id) {
+      this.todos = this.todos.map((todo) => {
+        if (todo.id === id) {
+          todo.completed = !todo.completed;
+        }
+        return todo;
+      });
+    },
+    deleteTodo(id) {
+      this.todos = this.todos.filter((item) => item.id !== id);
+    },
+  },
 };
 </script>
 

@@ -1,6 +1,12 @@
 <template>
   <ul>
-    <TodoItem :key="todo.id" v-for="todo of todos" v-bind:todo="todo" />
+    <TodoItem
+      :key="todo.id"
+      v-for="todo of todos"
+      v-bind:todo="todo"
+      @change="changeCompleted"
+      @delete="deleteTodo"
+    />
   </ul>
 </template>
 
@@ -12,6 +18,14 @@ export default {
   props: ["todos"],
   components: {
     TodoItem,
+  },
+  methods: {
+    changeCompleted(id) {
+      this.$emit("changeCompleted", id);
+    },
+    deleteTodo(id) {
+      this.$emit("deleteTodo", id);
+    },
   },
 };
 </script>
