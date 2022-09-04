@@ -4,7 +4,9 @@
       <input type="checkbox" @change="$emit('change', todo.id)" />
       <strong>{{ todo.id }}.</strong>
     </div>
-    <h4 v-bind:class="{ done: todo.completed }">{{ todo.title }}</h4>
+    <h4 v-bind:class="{ done: todo.completed }">
+      {{ todo.title }}
+    </h4>
     <button @click="$emit('delete', todo.id)">&times;</button>
   </li>
 </template>
