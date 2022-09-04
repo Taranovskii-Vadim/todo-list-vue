@@ -2,33 +2,42 @@
   <div>
     <AddTodoForm @addTodo="addTodo" />
     <hr />
+    <Loader v-if="loading" />
     <TodoList
+      v-else-if="todos.length"
       v-bind:todos="todos"
       @changeCompleted="changeCompleted"
       @deleteTodo="deleteTodo"
     />
+    <p v-else>No todos</p>
   </div>
 </template>
 
 <script>
 import TodoList from "@/components/TodoList.vue";
 import AddTodoForm from "@/components/AddTodoForm.vue";
+import Loader from "../components/Loader.vue";
 
 export default {
   name: "HomePage",
   data() {
     return {
       todos: [],
+      loading: true,
     };
   },
-  components: { TodoList, AddTodoForm },
+  components: { TodoList, AddTodoForm, Loader },
   mounted() {
     const getData = async () => {
-      const response = await fetch(
-        "https://jsonplaceholder.typicode.com/todos"
-      );
-      const result = await response.json();
-      this.todos = result;
+      try {
+        const response = await fetch(
+          "https://jsonplaceholder.typicode.com/todos"
+        );
+        const result = await response.json();
+        this.todos = result;
+      } finally {
+        this.loading = false;
+      }
     };
     getData();
   },
