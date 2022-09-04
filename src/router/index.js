@@ -7,6 +7,11 @@ const routes = [
     name: "home",
     component: Home,
   },
+  {
+    path: "/todos",
+    name: "todos",
+    component: () => import("../pages/Todos.vue"),
+  },
 ];
 
 const router = createRouter({ routes, history: createWebHistory() });

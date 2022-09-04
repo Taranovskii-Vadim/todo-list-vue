@@ -1,54 +1,16 @@
 <template>
   <div>
-    <AddTodoForm @addTodo="addTodo" />
-    <hr />
-    <TodoList
-      v-bind:todos="todos"
-      @changeCompleted="changeCompleted"
-      @deleteTodo="deleteTodo"
-    />
+    <p>
+      Lorem ipsum dolor, sit amet consectetur adipisicing elit. Facere molestias
+      id officia obcaecati optio? Exercitationem quo et quos unde iure. Quis
+      consequatur vitae alias nemo ipsum autem dolore adipisci odio.
+    </p>
+    <a href="/todos">Go to todos page</a>
   </div>
 </template>
 
 <script>
-import TodoList from "@/components/TodoList.vue";
-import AddTodoForm from "@/components/AddTodoForm.vue";
-
 export default {
   name: "HomePage",
-  data() {
-    return {
-      todos: [],
-    };
-  },
-  components: { TodoList, AddTodoForm },
-  mounted() {
-    const getData = async () => {
-      const response = await fetch(
-        "https://jsonplaceholder.typicode.com/todos"
-      );
-      const result = await response.json();
-      this.todos = result;
-    };
-    getData();
-  },
-  methods: {
-    addTodo(title) {
-      const newTodo = { id: this.todos.length + 1, title, completed: false };
-
-      this.todos.push(newTodo);
-    },
-    changeCompleted(id) {
-      this.todos = this.todos.map((todo) => {
-        if (todo.id === id) {
-          todo.completed = !todo.completed;
-        }
-        return todo;
-      });
-    },
-    deleteTodo(id) {
-      this.todos = this.todos.filter((item) => item.id !== id);
-    },
-  },
 };
 </script>
