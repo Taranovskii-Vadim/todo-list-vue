@@ -5,7 +5,7 @@
       id officia obcaecati optio? Exercitationem quo et quos unde iure. Quis
       consequatur vitae alias nemo ipsum autem dolore adipisci odio.
     </p>
-    <a href="/todos">Go to todos page</a>
+    <router-link to="/todos">Go to todos page</router-link>
   </div>
 </template>
 
