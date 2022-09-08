@@ -3,7 +3,7 @@
     <TodoItem
       :key="todo.id"
       v-for="todo of todos"
-      v-bind:todo="todo"
+      :todo="todo"
       @change="changeCompleted"
       @delete="deleteTodo"
     />

@@ -10,7 +10,7 @@
     <Loader v-if="loading" />
     <TodoList
       v-else-if="filteredTodos.length"
-      v-bind:todos="filteredTodos"
+      :todos="filteredTodos"
       @changeCompleted="changeCompleted"
       @deleteTodo="deleteTodo"
     />
